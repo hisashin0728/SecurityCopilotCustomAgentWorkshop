@@ -1,0 +1,2 @@
+# SecurityCopilotCustomAgentWorkshop
+Microsoft Security Copilot のプラグイン/カスタムエージェントを開発するためのワークショップコンテンツ
