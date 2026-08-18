@@ -1,6 +1,6 @@
 # GitHub Copilot で作る Microsoft Security Copilot カスタムエージェント
 
-VS Code と GitHub Copilot を使って、Microsoft Sentinel のデータを確かめながら Microsoft Security Copilot のカスタムプラグインとエージェントを作ってみる、手動かし式のワークショップです。
+VS Code と GitHub Copilot を使って、Microsoft Sentinel のデータを確かめながら Microsoft Security Copilot のカスタムプラグインとエージェントを作るワークショップです。
 
 ## はじめての方へ
 
