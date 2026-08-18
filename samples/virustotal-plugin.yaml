@@ -1,0 +1,16 @@
+Descriptor:
+  Name: WorkshopVirusTotalFileLookup
+  DisplayName: VirusTotal File Lookup Workshop
+  Description: Retrieves an existing VirusTotal file report for an approved SHA-256 hash.
+  SupportedAuthTypes:
+    - ApiKey
+  Authorization:
+    Type: APIKey
+    Key: x-apikey
+    Location: Header
+    AuthScheme: ''
+
+SkillGroups:
+  - Format: API
+    Settings:
+      OpenApiSpecUrl: https://raw.githubusercontent.com/REPLACE-OWNER/REPLACE-REPOSITORY/main/samples/virustotal-openapi.yaml

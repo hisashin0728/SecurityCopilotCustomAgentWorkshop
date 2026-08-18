@@ -1,0 +1,32 @@
+openapi: 3.0.1
+info:
+  title: VirusTotal file lookup workshop
+  version: 1.0.0
+  description: Read-only lookup of a file report by SHA-256 hash.
+servers:
+  - url: https://www.virustotal.com/api/v3
+paths:
+  /files/{id}:
+    get:
+      operationId: GetVirusTotalFileReport
+      summary: Get a VirusTotal file report
+      description: Returns an existing VirusTotal report for one SHA-256 hash. It does not upload a file.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A 64-character SHA-256 hash approved for external lookup.
+          schema:
+            type: string
+            minLength: 64
+            maxLength: 64
+            pattern: '^[A-Fa-f0-9]{64}$'
+      responses:
+        '200':
+          description: Existing file report.
+        '400':
+          description: Invalid hash.
+        '404':
+          description: No report exists for this hash.
+        '429':
+          description: API rate limit exceeded.

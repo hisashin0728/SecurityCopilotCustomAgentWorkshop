@@ -1,0 +1,56 @@
+Descriptor:
+  Name: WorkshopLogicAppIncidentReport
+  DisplayName: Workshop Logic App Incident Report
+  Description: Sends a sanitized incident report through an approved Logic App only after explicit analyst confirmation.
+  Settings:
+    - Name: SubscriptionId
+      Label: Subscription ID
+      Description: Azure subscription containing the workshop Logic App.
+      SettingType: String
+      Required: true
+    - Name: ResourceGroup
+      Label: Resource group
+      Description: Resource group containing the workshop Logic App.
+      SettingType: String
+      Required: true
+    - Name: WorkflowName
+      Label: Workflow name
+      Description: Name of the workshop Logic App workflow.
+      SettingType: String
+      Required: true
+    - Name: TriggerName
+      Label: Trigger name
+      Description: Name of the HTTP request trigger.
+      SettingType: String
+      Required: true
+
+SkillGroups:
+  - Format: LogicApp
+    Skills:
+      - Name: SendIncidentWorkshopReport
+        DisplayName: Send Incident Workshop Report
+        Description: Use only after an analyst explicitly approves sending sanitized incident data to the fixed workshop mailbox.
+        Inputs:
+          - Name: sendApproved
+            Description: Must be true only after the analyst confirms content and destination.
+            Required: true
+          - Name: incidentNumber
+            Description: Sanitized Sentinel incident number.
+            Required: true
+          - Name: title
+            Description: Sanitized report title without HTML.
+            Required: true
+          - Name: severity
+            Description: One of Informational, Low, Medium, or High.
+            Required: true
+          - Name: summary
+            Description: Grounded plain-text summary, up to 4000 characters.
+            Required: true
+          - Name: nextActions
+            Description: Plain-text recommended checks, up to 2000 characters.
+            Required: false
+        Settings:
+          SubscriptionId: '{{SubscriptionId}}'
+          ResourceGroup: '{{ResourceGroup}}'
+          WorkflowName: '{{WorkflowName}}'
+          TriggerName: '{{TriggerName}}'

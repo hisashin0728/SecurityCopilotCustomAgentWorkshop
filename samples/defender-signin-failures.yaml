@@ -1,0 +1,19 @@
+Descriptor:
+  Name: WorkshopDefenderSigninFailures
+  DisplayName: Defender Sign-in Failure Workshop
+  Description: Returns up to 50 failed sign-ins observed by Defender in the last 24 hours.
+
+SkillGroups:
+  - Format: KQL
+    Skills:
+      - Name: GetRecentSigninFailures
+        DisplayName: Get recent sign-in failures
+        Description: Use when an analyst needs a bounded list of recent failed sign-ins from Defender Advanced Hunting.
+        Settings:
+          Target: Defender
+          Template: |-
+            AADSignInEventsBeta
+            | where Timestamp >= ago(24h)
+            | where ErrorCode != 0
+            | project Timestamp, AccountUpn, ErrorCode, IPAddress, Application
+            | top 50 by Timestamp desc
