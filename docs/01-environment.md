@@ -1,7 +1,7 @@
 # Lab 1: 開発環境を準備する
 
-**所要時間:** 25 分  
-**ゴール:** VS Code で GitHub Copilot と custom plugins builder を使える状態にする
+**所要時間:** 35 分  
+**ゴール:** VS Code で GitHub Copilot、Microsoft Learn MCP Server、custom plugins builder を使える状態にする
 
 ## 1-1. Visual Studio Code をインストールする
 
@@ -45,6 +45,61 @@
 
 **期待結果:** Copilot がこのリポジトリの README の見出しを返します。
 
+## 1-4. Microsoft Learn MCP Server を接続する
+
+[Microsoft Learn MCP Server](https://learn.microsoft.com/ja-jp/training/support/mcp) は、GitHub Copilot などの AI エージェントが Microsoft の公式ドキュメントを検索し、記事全文やコードサンプルを取得するためのリモート MCP サーバーです。AI の学習時点だけに頼らず、更新された Microsoft Learn を根拠に回答を作れるようになります。
+
+このサーバーは Microsoft がホストしており、無料で利用できます。API キーや Microsoft アカウントでの認証、ローカルへのサーバーインストールは不要です。このワークショップでは、設定をリポジトリと一緒に管理できるようにワークスペース単位で接続します。
+
+1. VS Code の Explorer で、ワークスペースのルートに `.vscode` フォルダーを作成します。
+2. `.vscode` フォルダー内に `mcp.json` を作成します。
+3. 次の内容を貼り付けて保存します。
+
+```json
+{
+	"servers": {
+		"microsoft-learn": {
+			"type": "http",
+			"url": "https://learn.microsoft.com/api/mcp"
+		}
+	}
+}
+```
+
+4. `mcp.json` の上部に **Start** が表示された場合は選択します。確認ダイアログが表示された場合は、このワークスペースを信頼できることを確認してサーバーを有効にします。
+5. Copilot Chat を **Agent** モードにします。
+6. **Tools** アイコンを開き、`microsoft` または `docs` で検索します。
+7. Microsoft Learn のドキュメント検索、記事取得、コードサンプル検索に対応するツールが有効になっていることを確認します。
+
+> [!TIP]
+> **画面ショット差し替え枠 `SS-12`:** Copilot Chat の Tools 一覧で Microsoft Learn のツールが有効になっている状態。
+
+![SS-12 差し替え用ダミー: Microsoft Learn MCP ツールが有効な状態](../assets/screenshots/ss-12-learn-mcp-tools.png)
+
+### 接続を確認する
+
+Copilot Chat に次のプロンプトを送ります。ツールの実行確認が表示されたら、内容を確認して許可します。
+
+```text
+Microsoft Learn MCP Server を使って、Microsoft Security Copilot の概要を公式ドキュメントから検索してください。参照したページのタイトルと URL も示してください。
+```
+
+**期待結果:** Microsoft Learn の検索ツールが呼び出され、公式ページのタイトル、概要、URL が返ります。
+
+うまく動かない場合は、次を確認します。
+
+- Copilot Chat が **Ask** ではなく **Agent** モードになっている
+- `.vscode/mcp.json` の JSON に赤い波線がなく、ファイルを保存済み
+- Tools 一覧で Microsoft Learn のツールが無効になっていない
+- 組織のプロキシやファイアウォールが `https://learn.microsoft.com/api/mcp` への HTTPS 通信を許可している
+- VS Code を再読み込みし、MCP サーバーを再度開始する
+
+> [!NOTE]
+> エンドポイントを Web ブラウザーで直接開くと `405 Method Not Allowed` が表示されることがあります。これは MCP クライアントからの Streamable HTTP 通信専用であるためで、接続障害を意味しません。
+
+> [!IMPORTANT]
+> Learn MCP Server が扱うのは公開されている Microsoft Learn のコンテンツです。組織固有の Sentinel データにはアクセスしません。演習データへ接続する Microsoft Sentinel MCP Server は [Lab 2](02-mcp.md) で別に設定します。
+
 ## Security Copilot custom plugins builder とは
 
 [Security Copilot custom plugins builder](https://github.com/mariocuomo/Experimenting-With-Security-Copilot/tree/main/Security%20Copilot%20custom%20plugins%20builder)（[紹介記事](https://www.linkedin.com/pulse/security-copilot-custom-plugins-builder-mario-cuomo-tyjef/)）は、VS Code の GitHub Copilot 向けに作られた **AI スキル**です。「〇〇するプラグインを作って」と日本語や英語で伝えるだけで、Security Copilot のプラグイン/エージェント用 YAML マニフェストの作成を最後まで案内します。
@@ -75,7 +130,7 @@ KQL / API / GPT / LogicApp / MCP / Agent のすべての形式と、混合形式
 > [!IMPORTANT]
 > Builder はコミュニティ製の支援ツールであり、Microsoft の公式製品ではありません。生成物は下書きとして扱い、クエリ対象・時間範囲・出力件数・認証方式を人がレビューし、必ず Security Copilot 上で検証してください。公式仕様は Microsoft Learn を正とします。
 
-## 1-4. custom plugins builder を取得する
+## 1-5. custom plugins builder を取得する
 
 参照する Builder はコミュニティ成果物です。内容とライセンスを確認してから演習環境へ取得します。
 
@@ -100,7 +155,7 @@ Security Copilot custom plugins builder/Builder
 
 ![SS-03 差し替え用ダミー: Builder のフォルダー構成](../assets/screenshots/ss-03-builder-folder.png)
 
-## 1-5. Builder の応答を確認する
+## 1-6. Builder の応答を確認する
 
 Copilot Chat を **Agent** モードにし、次を送ります。この時点ではファイルを作らせません。
 
@@ -120,5 +175,6 @@ Security Copilot の KQL プラグインを作るときに、確認すべき要�
 
 - [ ] VS Code と必要な拡張機能が導入済み
 - [ ] Enterprise ライセンスがある GitHub アカウントで Copilot Chat を使える
+- [ ] Microsoft Learn MCP Server のツールを Copilot Chat から実行できる
 - [ ] Builder の `SKILL.md` と参照ファイルを確認した
 - [ ] Builder が要件確認の質問を返した
