@@ -81,23 +81,26 @@ flowchart LR
 
 ## 7-4. Security Copilot スキルを作る
 
-[logicapp-report-plugin.yaml](../samples/logicapp-report-plugin.yaml) をコピーし、アップロード後の設定項目として次を入力します。
+[logicapp-report-plugin.yaml](../samples/logicapp-report-plugin.yaml) をコピーし、Security Copilot のカスタムプラグインとしてアップロードします。
+アップロード時に、設定項目として次を入力します。
 
 - Azure subscription ID
 - Resource group
 - Logic App workflow name
 - HTTP trigger name
 
+<img width="598" height="672" alt="image" src="https://github.com/user-attachments/assets/48aacb59-99a7-4118-a270-d6d2acae6995" />
+
 これらを設定値にすることで、リポジトリへ環境固有 ID を直接書かずに済みます。Logic App と Security Copilot は同じテナントに存在する必要があります。
 
-<img width="894" height="228" alt="image" src="https://github.com/user-attachments/assets/1000d90f-575a-4924-aea5-bde7f4c2d67a" />
+<img width="596" height="152" alt="image" src="https://github.com/user-attachments/assets/1000d90f-575a-4924-aea5-bde7f4c2d67a" />
 
 ## 7-5. 送信前確認をテストする
 
 最初に `sendApproved: false` で実行します。
 
 ```text
-Workshop Logic App Incident Report を使い、sendApproved は false のまま、演習インシデントのレポート送信を試してください。
+Send Incident Workshop Report スキルを使い、sendApproved は false のまま、演習インシデントのレポート送信を試してください。
 ```
 
 **期待結果:** Logic App の実行は記録されますが、メールは送信されません。
@@ -106,7 +109,7 @@ Workshop Logic App Incident Report を使い、sendApproved は false のまま�
 
 ```text
 送信先が講師指定のテストメールボックスであることを確認しました。
-Workshop Logic App Incident Report を使い、sendApproved=true で次の演習データを送信してください: <サニタイズ済みデータ>
+Send Incident Workshop Report スキルを使い、sendApproved=true で次の演習データを送信してください: <サニタイズ済みデータ>
 ```
 
 > [!TIP]
