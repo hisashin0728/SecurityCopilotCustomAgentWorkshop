@@ -73,6 +73,8 @@ Builder/
 
 ローカルファイルにすることで、チャットへ長い要件を貼り直さず、レビューや差分管理の対象にできます。環境 ID、メールアドレス、実インシデント情報、シークレットは指示書へ追記しません。
 
+<img width="2496" height="1592" alt="image" src="https://github.com/user-attachments/assets/209b504b-e895-45c9-90a5-4be07bd1aa53" />
+
 ## 9-2. 指示書からエージェントを生成する
 
 Copilot Chat を **Agent** モードにし、Defender と Security Copilot Agent の Builder が利用するツールを有効にして、次を送ります。
@@ -84,6 +86,8 @@ Builder のワークフローに従って Defender の利用可能なテーブ�
 ```
 
 Copilot から対象テーブル、実行方式、Logic Apps スキルの設定などを質問された場合は、講師が用意した演習環境の値を答えます。列名やテーブル名を推測で確定させず、利用可能な Defender スキーマの確認結果を優先します。
+
+<img width="2496" height="1592" alt="image" src="https://github.com/user-attachments/assets/9c5912d0-199c-485d-b984-252b2cb42e82" />
 
 ## 9-3. 出力フォルダーを確認する
 
