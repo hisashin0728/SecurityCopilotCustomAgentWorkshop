@@ -53,11 +53,16 @@ flowchart LR
 
 <img width="2479" height="1126" alt="image" src="https://github.com/user-attachments/assets/899900e9-c6e1-4162-ba48-cdea26adb4db" />
 
-5. Condition を追加し、`sendApproved` が `true` の場合だけ後続処理へ進めます。
+5. Condition を追加します。`sendApproved` の値は **Security Copilot から文字列で渡される**ため、型に依存しない式で比較します。左辺のフィールドで「式 (Expression)」を開き、次を入力します。
+
+   ```text
+   toLower(string(triggerBody()?['sendApproved']))
+   ```
+   演算子は 次の値に等しい (is equal to)、右辺には文字列で true を入力します（動的コンテンツや式の true は選ばない）。
 6. false 側は **Terminate** で `Cancelled` を返します。
 7. true 側で入力の長さと値を再確認します。
 
-<img width="2479" height="1071" alt="image" src="https://github.com/user-attachments/assets/cfa42f29-44bd-4b5d-986e-ce066132536a" />
+<img width="2478" height="1015" alt="image" src="https://github.com/user-attachments/assets/73ab3142-ea85-4fd1-920a-09fbd9b1fbbf" />
 
 ## 7-3. HTML/CSS レポートを組み立てる
 
@@ -109,8 +114,15 @@ Send Incident Workshop Report スキルを使い、sendApproved は false のま
 
 ```text
 送信先が講師指定のテストメールボックスであることを確認しました。
-Send Incident Workshop Report スキルを使い、sendApproved=true で次の演習データを送信してください: <サニタイズ済みデータ>
+Send Incident Workshop Report スキルを使い、sendApproved=true で次の演習データを送信してください。
+incidentNumber: INC-TEST-002
+title: Workshop test
+severity: Low
+summary: Plugin invocation test
+nextActions: Verify workflow
 ```
+
+**期待結果:** Condition が true 側に進み、Compose → メールの送信 (V2) が実行され、実行履歴のステータスが **Succeeded** になります。テストメールボックスに HTML レポートが届きます。
 
 > [!TIP]
 > **画面ショット差し替え枠 `SS-11`:** Logic App 実行履歴の成功画面。入力/出力本文と URL はマスクします。
