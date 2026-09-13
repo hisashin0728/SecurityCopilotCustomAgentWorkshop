@@ -109,13 +109,20 @@ Send Incident Workshop Report スキルを使い、sendApproved は false のま
 
 ```text
 送信先が講師指定のテストメールボックスであることを確認しました。
-Send Incident Workshop Report スキルを使い、sendApproved=true で次の演習データを送信してください: <サニタイズ済みデータ>
+Send Incident Workshop Report スキルで次の演習データを送信してください。
+sendApproved: true
+incidentNumber: INC-TEST-002
+title: Workshop test
+severity: Low
+summary: Plugin invocation test
+nextActions: Verify workflow
 ```
 
-> [!TIP]
-> **画面ショット差し替え枠 `SS-11`:** Logic App 実行履歴の成功画面。入力/出力本文と URL はマスクします。
+<img width="2017" height="1013" alt="image" src="https://github.com/user-attachments/assets/cfacb675-76f2-4b60-badd-b0cfcf162441" />
 
-![SS-11 差し替え用ダミー: Logic App の実行履歴（本文は非表示）](../assets/screenshots/ss-11-logicapp-run.png)
+<img width="1058" height="1118" alt="image" src="https://github.com/user-attachments/assets/3ec00ec1-7b2c-4450-a83c-3e2ae56c6050" />
+
+<img width="1248" height="1435" alt="image" src="https://github.com/user-attachments/assets/d0141a44-fdff-4f68-8dd9-b52c953ddea0" />
 
 ## 7-6. 運用設計を確認する
 
