@@ -56,6 +56,7 @@
 - 今回の生成物は、Builder/output フォルダにエージェント名でフォルダを作成し、中に以下を生成すること
  - カスタムエージェントの YAML ファイル
  - サンプル HTML イメージ例
+ - Logic Apps の ARM テンプレート
  - README
 ```
 
@@ -91,17 +92,19 @@ Copilot から対象テーブル、実行方式、Logic Apps スキルの設定�
 
 ## 9-3. 出力フォルダーを確認する
 
-生成後、`Builder/output/<エージェント名>/` に次の3ファイルがあることを確認します。ファイル名は Builder の命名規則に従うため、完全一致でなくても構いません。
+生成後、`Builder/output/<エージェント名>/` に次の4ファイルがあることを確認します。ファイル名は Builder の命名規則に従うため、完全一致でなくても構いません。
 
 ```text
 Builder/output/<エージェント名>/
 ├─ <エージェント名>.yaml
 ├─ <エージェント名>-sample.html
+├─ logic-app-template.json
 └─ README.md
 ```
 
 - YAML: Defender KQL スキル、レポート生成指示、Logic Apps 連携に必要な定義
 - HTML: ダミーデータだけを使った Outlook 向け表示サンプル
+- json: Logic Apps の ARM テンプレート
 - README: 設定値、登録方法、テスト方法、制約、メール通知の手順
 
 > [!CAUTION]
@@ -142,6 +145,8 @@ KQL の `limit` だけに頼らず、先に集計して必要列だけを返し�
 3. [Lab 7](07-logic-apps.md) と同様に、最初は送信無効または承認なしでテストします。
 4. 人が宛先と本文を確認した後、講師指定のテスト用メールボックスだけへ送信します。
 5. 0 件、大量データ、欠損列を含むケースでも、捏造や無制限出力がないことを確認します。
+
+<img width="2496" height="1592" alt="image" src="https://github.com/user-attachments/assets/72a8bac5-bd68-4681-b88b-4e1dd964f3f4" />
 
 ## チェックポイント
 
