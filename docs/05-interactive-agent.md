@@ -96,6 +96,9 @@ Microsoft Defender XDR のインシデントを調査する対話型 Security Co
 5. 講師から渡された演習用 Defender インシデント番号でスタータープロンプトを実行します。
 6. 実行ログで、インシデント取得後に関連 `AlertId` を使って Defender KQL スキルが呼ばれたことを確認します。
 
+<img width="1012" height="326" alt="image" src="https://github.com/user-attachments/assets/e132a574-98c2-44b0-be62-dab2b0d0f3f8" />
+
+
 ## 5-5. 結果を評価する
 
 | 観点 | 合格条件 |
@@ -109,6 +112,8 @@ Microsoft Defender XDR のインシデントを調査する対話型 Security Co
 
 > [!NOTE]
 > 対話型エージェントのメモリはチャットコンテキストに含まれないという既知の制限があります。重要な識別子は会話の記憶だけに依存させず、必要に応じて再提示します。
+
+<img width="2242" height="1243" alt="image" src="https://github.com/user-attachments/assets/b08b8ea0-c19e-48a0-8108-93fdd00c23d9" />
 
 ## チャレンジ
 
