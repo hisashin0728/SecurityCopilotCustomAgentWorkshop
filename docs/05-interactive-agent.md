@@ -71,6 +71,8 @@ Microsoft Defender XDR のインシデントを調査する対話型 Security Co
 - 生成した KQL に管理コマンドや書き込み処理がないことを確認する
 ```
 
+<img width="2206" height="735" alt="image" src="https://github.com/user-attachments/assets/28da0b21-4628-4fdb-83d2-418069858f73" />
+
 開始例は [defender-incident-agent.yaml](../samples/defender-incident-agent.yaml) です。開催前に Builder のツール検索で `Fusion.GetIncident` と `Fusion.GetIncidentEntities` が利用できることを確認し、Advanced Hunting の実スキーマを優先してください。
 
 ## 5-3. (参考) 作成されたエージェント (yaml ファイル) を確認する
